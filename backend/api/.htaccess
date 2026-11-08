@@ -1,0 +1,2 @@
+# Public JSON API used by the front-end (overrides backend/.htaccess)
+Require all granted

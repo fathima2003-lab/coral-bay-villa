@@ -1,0 +1,2 @@
+# Internal files: not reachable from the browser (Apache 2.4)
+Require all denied

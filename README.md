@@ -1,209 +1,200 @@
-# Coral Bay Villa — Coastal Villa & Room Booking System
+# Coral Bay Villa – Room Booking System
 
-A dynamic web application for **Coral Bay Villa**, a fictional boutique villa in **Mirissa, Sri Lanka**.
-Visitors explore the villa, browse rooms, check availability and send booking requests.
-The administrator manages rooms, views reservations and confirms or cancels bookings.
+A room booking website for **Coral Bay Villa**, a small (fictional) beachside villa on Beach Road, Mirissa.
+Guests can look around the villa, check which rooms are free for their dates and send a booking request.
+The villa's administrator then confirms or cancels each request from an admin panel.
+
+I built this for **IT1208 – Web Technologies, Continuous Assessment 2**.
+
+**Student:** [Your Name] · [Index Number]
+**Repository:** https://github.com/fathima2003-lab/coral-bay-villa
 
 ---
 
-## 1. Implemented features
+## Project overview
 
-### Guest / visitor side
-| Page | Features |
+Small guest houses in places like Mirissa often take bookings over phone calls and WhatsApp, which
+makes it easy to double-book a room. This project puts the whole process in one place:
+
+- Guests browse rooms, pick dates and see the total price before they book.
+- Every booking starts as **Pending**. Only the administrator can mark it **Confirmed** or **Cancelled**.
+- A room can't be confirmed twice for the same nights. The system checks this both when the guest
+  books and again when the admin confirms.
+
+The site is built with plain PHP and MySQL (no framework), with Bootstrap for the layout and
+vanilla JavaScript for validation and live updates.
+
+---
+
+## Features
+
+### For guests
+- **Home page** – introduction to the villa, facilities, featured rooms, photo gallery, guest reviews,
+  location map and a quick availability search.
+- **Rooms page** – all available rooms with photos, facilities, maximum guests and price per night.
+  Rooms can be filtered by type, price, facility and number of guests.
+- **Room details** – photo slideshow, full description, reviews and a live "is this room free?" check
+  that updates as you change the dates.
+- **Availability search** – enter check-in, check-out and number of guests to see only the rooms that are
+  free for the whole stay, with the total price for each.
+- **Booking form** – shows the number of nights and a price breakdown while you fill it in.
+- **My Bookings** – a guest sees only their own bookings and their status, and can cancel a booking
+  while it's still Pending.
+- **Register / log in / log out.**
+
+### For the administrator
+- **Dashboard** – total bookings, pending requests, confirmed revenue, this month's occupancy,
+  a chart of bookings per month and a list of arrivals in the next two weeks.
+- **Bookings** – view all reservations, filter them, and confirm or cancel requests. A "Clash" label
+  warns when a pending request overlaps a booking that is already confirmed.
+- **Rooms** – add, edit, deactivate and delete rooms, including uploading a room photo.
+  Rooms that already have bookings can only be deactivated, so old booking records stay intact.
+
+### Extra features
+- Live availability check using AJAX (`backend/api/availability.php` returns JSON).
+- Search and filters for rooms.
+- Photo gallery with a pop-up viewer.
+- Admin dashboard with statistics and a Chart.js chart.
+- **Seasonal pricing:** Festive Peak +25%, High Season +15%, Green Season −15%.
+- **Long-stay discount:** 10% off stays of 7 nights or more.
+- Guest reviews and star ratings, allowed only after a completed, confirmed stay.
+- Embedded location map (OpenStreetMap).
+
+---
+
+## Technologies used
+
+| Part | Technology |
 |---|---|
-| **Home** (`index.php`) | Hero with villa intro, quick availability search, facilities, featured rooms, image gallery with lightbox, guest reviews, interactive map, "Book Now" buttons |
-| **Rooms** (`rooms.php`) | All active rooms with image, description, facilities, max guests, price/night; **filters** by type, max price (slider), facility, guests; sorting |
-| **Room details** (`room.php`) | Image carousel, full facilities, **live AJAX availability + price check**, reviews, review form for completed stays |
-| **Availability search** (`search.php`) | Check-in / check-out / guests → only rooms with **no overlapping confirmed booking**; total price per room for the stay |
-| **Booking form** (`book.php`) | Guest name, email, contact number, room, dates, guests, special requests; **live price breakdown** (nights, seasonal rates, long-stay discount) |
-| **My Bookings** (`my_bookings.php`) | Guest's own bookings only, status badges (Pending / Confirmed / Cancelled), filter tabs, **cancel pending bookings** |
-| **Register / Login / Logout** | Password hashing, sessions, redirect back to the page you were on |
-
-### Administrator side (`admin/`)
-| Page | Features |
-|---|---|
-| **Dashboard** | Total bookings, pending, confirmed revenue, monthly occupancy %, active rooms, guests; **Chart.js bar chart** of bookings per month; revenue per room; quick confirm/cancel; arrivals in the next 14 days |
-| **Bookings** | All reservations with filters (status, room, guest, date); **confirm / cancel**; "Clash" warning for requests that overlap a confirmed booking |
-| **Rooms** | View all rooms, edit, activate/deactivate, delete (only rooms without bookings) |
-| **Add / Edit room** | All room fields, facility checkboxes, **image upload** (JPG/PNG/WebP, 2 MB) with live preview |
-
-### Additional (optional) features
-- AJAX room-availability checking (`backend/api/availability.php`, JSON)
-- Search & filter rooms by price, facilities, room type and guests
-- Image gallery (lightbox) + per-room carousel
-- Administrator dashboard with booking statistics and chart
-- **Seasonal pricing** (Festive Peak +25%, High Season +15%, Green Season −15%) and **10% long-stay discount** (7+ nights)
-- Guest reviews and star ratings (only for completed, confirmed stays)
-- Interactive location map (OpenStreetMap)
-- Password strength meter and show/hide password
+| Front-end | HTML5, CSS3, Bootstrap 5.3, Bootstrap Icons, vanilla JavaScript, Chart.js |
+| Back-end | PHP 8 using PDO |
+| Database | MySQL / MariaDB |
+| Local server | XAMPP (Apache + MySQL) |
 
 ---
 
-## 2. Requirement checklist
+## Software requirements
 
-| Requirement | Where |
-|---|---|
-| Responsive layout (desktop / tablet / mobile) | Bootstrap grid + media queries in `frontend/assets/css/style.css` |
-| JS form validation | `frontend/assets/js/main.js` → `initValidation()`, registration + booking forms |
-| Prevent invalid date ranges | `validateDateRange()` – past dates, check-out ≤ check-in, > 30 nights |
-| Nights + estimated cost | `calculatePrice()` in `main.js` |
-| DOM manipulation | price summary table, availability messages, nights label, gallery, char counter |
-| ≥ 3 related tables | 6 tables: `users`, `rooms`, `bookings`, `room_images`, `reviews`, `seasonal_rates` |
-| Password hashing | `password_hash()` / `password_verify()` in `backend/controllers/register.php`, `login.php` |
-| Sessions + logout | `backend/core/init.php`, `login_user()`, `backend/controllers/logout.php` |
-| Room CRUD | `backend/controllers/admin/rooms.php`, `room_form.php` |
-| Booking requests stored/retrieved | `backend/controllers/book.php`, `my_bookings.php`, `admin/bookings.php` |
-| Confirm / cancel bookings | `backend/core/admin_actions.php` |
-| **Prevent overlapping confirmed bookings** | `room_is_available()` in `backend/core/functions.php`; checked on booking **and** again when the admin confirms (in a transaction with row locks) |
-| Server-side validation & price | `backend/controllers/book.php` re-validates everything; `calculate_booking_price()` |
-| Prepared statements | PDO with `ATTR_EMULATE_PREPARES = false` everywhere |
-| Access control | `require_login()`, `require_guest_account()`, `require_admin()` |
-| Guests can't see/cancel others' bookings | every guest query filters by `user_id` from the session |
-
-### Security measures
-- PDO prepared statements (SQL injection)
-- `htmlspecialchars()` on all output via `e()` (XSS)
-- CSRF token on every POST form
-- `session_regenerate_id()` on login and logout (session fixation)
-- HttpOnly + SameSite session cookie
-- Same error message for unknown email / wrong password
-- Uploaded images checked by real image type and size, renamed randomly
-- Server never trusts the price sent by the browser — total is recalculated in PHP
+- **XAMPP 8.x** or similar, with Apache, **PHP 8.0 or newer** and MySQL/MariaDB.
+- A modern browser such as Chrome, Edge or Firefox.
+- Nothing else needs installing. Bootstrap, the icons and Chart.js are already included in
+  `frontend/assets/vendor/`, so the site works without internet. Only the Google Fonts and the map need a connection.
 
 ---
 
-## 3. Software requirements
-- **XAMPP 8.x** (Apache + PHP 8.0 or newer + MariaDB/MySQL) — or WAMP/MAMP equivalent
-- A modern browser (Chrome, Edge, Firefox)
-- No Composer or Node needed. Bootstrap, Bootstrap Icons and Chart.js are included in `frontend/assets/vendor/`, so the site works offline (only Google Fonts and the map need internet).
+## Installation and configuration
+
+1. **Copy the project** into your web folder:
+   - Default XAMPP: `C:\xampp\htdocs\coral-bay-villa`
+   - If you've changed Apache's `DocumentRoot`, copy it into that folder instead.
+
+2. **Start Apache and MySQL** from the XAMPP Control Panel.
+
+3. **Create the database:**
+   - Open http://localhost/phpmyadmin and go to the **Import** tab.
+   - Choose `backend/database/db_structure.sql` and click **Import**.
+   - This creates the `coral_bay_villa` database with its tables and sample data.
+
+4. **Check the database settings** in `backend/config/config.php`.
+   The defaults match a fresh XAMPP install (user `root`, empty password). Change `DB_USER` and
+   `DB_PASS` if your MySQL is set up differently.
+
+5. **Open the site:** http://localhost/coral-bay-villa/
+
+**Troubleshooting**
+- *"Database connection failed"* – MySQL isn't running, or the SQL file hasn't been imported yet.
+- *500 Internal Server Error* – make sure Apache allows `.htaccess` files (`AllowOverride All` in `httpd.conf`), then restart Apache.
+- *Room photos don't upload* – check that `frontend/assets/img/` isn't read-only.
 
 ---
 
-## 4. Installation (XAMPP on Windows)
-
-1. Copy the `coral-bay-villa` folder into `C:\xampp\htdocs\`
-2. Open the **XAMPP Control Panel** and start **Apache** and **MySQL**.
-3. Open **http://localhost/phpmyadmin** → **Import** tab → choose `backend/database/db_structure.sql` → **Go**.
-   This creates the `coral_bay_villa` database with tables and sample data.
-4. If your MySQL root user has a password, edit `backend/config/config.php` (`DB_USER`, `DB_PASS`).
-5. Visit **http://localhost/coral-bay-villa/**
-
-> If you rename the folder, the base URL is detected automatically.
-> Admin image uploads are saved in `frontend/assets/img/` — make sure that folder is writable.
-
----
-
-## 5. Sample login credentials
+## Login details (sample data)
 
 | Role | Email | Password |
 |---|---|---|
-| Administrator | `admin@coralbay.lk` | `Admin@123` |
-| Guest | `nimal@example.com` | `Guest@123` |
-| Guest | `emma@example.com` | `Guest@123` |
-| Guest | `kasun@example.com` | `Guest@123` |
+| Administrator | admin@coralbay.lk | Admin@123 |
+| Guest | nimal@example.com | Guest@123 |
+| Guest | emma@example.com | Guest@123 |
+| Guest | kasun@example.com | Guest@123 |
 
-Sample data includes confirmed, pending and cancelled bookings, two reviews and three pricing seasons.
-(Nimal has a confirmed booking for Coconut Grove Deluxe on 20–23 Nov 2026 — try searching those dates to see it excluded.)
+The sample data includes bookings in all three states (Pending, Confirmed, Cancelled), a few reviews
+and three pricing seasons. For example, Nimal already has a confirmed booking for the Coconut Grove Deluxe
+on 20–23 November 2026. If you search those dates, that room won't be shown.
 
 ---
 
-## 6. Project structure — front-end vs back-end
+## Project structure
 
-The code is split into two clearly separated layers:
-
-| Layer | Folder | Responsibility |
-|---|---|---|
-| **Front-end** | `frontend/` | Everything the browser sees: HTML templates (views), CSS, JavaScript, images, Bootstrap/Chart.js. Views **never** query the database. |
-| **Back-end** | `backend/` | Request handling, validation, sessions, authentication, business rules (pricing, availability), SQL queries, JSON API, database script. |
-
-Each page works in two steps — the root file is only a thin entry point that keeps the URL simple:
-
-```
-browser → rooms.php ─┬─► backend/controllers/rooms.php   (validate input, run SQL, prepare $rooms)
-                     └─► frontend/views/pages/rooms.php   (render $rooms as HTML)
-
-browser JS (fetch) ─────► backend/api/availability.php      (JSON response)
-```
+The code is split into a **front-end** (what the browser sees) and a **back-end** (logic and database).
+Each page has a small entry file in the main folder that runs its back-end controller first and then its front-end view.
 
 ```
 coral-bay-villa/
-│
-├── index.php, rooms.php, room.php, search.php, book.php,      ← entry points (2 lines each:
-│   my_bookings.php, register.php, login.php, logout.php          controller + view)
-├── admin/index.php, bookings.php, rooms.php, room_form.php
-│
-├── frontend/                         ★ FRONT-END
-│   ├── views/
-│   │   ├── layout/header.php         navbar, <head>, flash messages
-│   │   ├── layout/footer.php         footer, script tags
-│   │   ├── partials/room_card.php    reusable room card
-│   │   ├── partials/admin_nav.php    admin tab bar
-│   │   ├── pages/                    one template per page
-│   │   │   ├── home.php, rooms.php, room.php, search.php, book.php,
-│   │   │   ├── my_bookings.php, register.php, login.php
-│   │   │   └── admin/ dashboard.php, bookings.php, rooms.php, room_form.php
-│   │   └── view_helpers.php          e(), stars(), status_badge(), asset_url() …
-│   └── assets/
-│       ├── css/style.css             custom design + media queries
-│       ├── js/main.js                validation, date checks, price calc, AJAX, DOM updates
-│       ├── js/admin.js               dashboard chart
-│       ├── img/                      room & villa images (+ admin uploads)
-│       └── vendor/                   Bootstrap 5.3.3, Bootstrap Icons 1.11.3, Chart.js 4.4.1
-│
-└── backend/                          ★ BACK-END
-    ├── config/config.php             DB settings, booking rules
-    ├── core/
-    │   ├── init.php                  loads config, DB, session, helpers
-    │   ├── db.php                    PDO connection
-    │   ├── functions.php             auth, CSRF, flash, date validation,
-    │   │                             pricing, availability queries
-    │   └── admin_actions.php         confirm / cancel booking (transaction)
-    ├── controllers/                  one per page (handles GET/POST, runs SQL)
-    │   ├── home.php, rooms.php, room.php, search.php, book.php,
-    │   ├── my_bookings.php, register.php, login.php, logout.php
-    │   └── admin/ dashboard.php, bookings.php, rooms.php, room_form.php
-    ├── api/availability.php          AJAX JSON endpoint
-    └── database/db_structure.sql     tables + sample records
+├── index.php, rooms.php, room.php, search.php, book.php,   page entry points
+│   my_bookings.php, register.php, login.php, logout.php
+├── admin/                       admin page entry points
+├── frontend/
+│   ├── views/                   HTML templates (pages, layout, partials)
+│   └── assets/                  CSS, JavaScript, images, Bootstrap, Chart.js
+└── backend/
+    ├── config/config.php        database settings and booking rules
+    ├── core/                    database connection, sessions, login checks,
+    │                            pricing and availability functions
+    ├── controllers/             one file per page: handles forms and database queries
+    ├── api/availability.php     JSON endpoint used by the live availability check
+    └── database/db_structure.sql
 ```
 
-`backend/.htaccess` and `frontend/views/.htaccess` block direct browser access to internal
-files (only `backend/api/` is public), so users can only reach pages through the entry points.
-
-### Key logic — overlap check
-Two stays overlap when `existing.check_in < new.check_out AND existing.check_out > new.check_in`.
-Only **Confirmed** bookings block a room, so several guests can request the same dates; the admin
-can confirm only one of them (others show a "Clash" badge and confirming them is refused).
-Check-out day = next guest's check-in day is allowed.
+### Database tables
+`users`, `rooms`, `bookings`, `room_images`, `reviews`, `seasonal_rates`.
+Bookings link to a user and a room; reviews link to a booking.
 
 ---
 
-## 7. Testing summary
-Tested on PHP 8.3 + MariaDB with an automated browser script (30 checks, all passing), including:
-date auto-correction and invalid-range messages, room filters, availability excluding booked rooms,
-login redirect for booking, client-side blocking of invalid registration, seasonal + long-stay price
-(JS and PHP agree: 8 festive nights in the suite = LKR 216,000), guest cancellation, server rejecting
-past dates and overlapping bookings without JavaScript, guest unable to cancel another guest's booking,
-CSRF rejection, admin-only pages, confirm/cancel, overlap blocked on confirm, room add/edit/deactivate/delete
-with image upload, reviews, and no horizontal scrolling at 390 px mobile width.
+## How some of the key parts work
+
+- **Preventing double bookings:** two stays overlap when one starts before the other ends.
+  In SQL: `existing.check_in < new.check_out AND existing.check_out > new.check_in`.
+  Only confirmed bookings block a room. One guest can check out on the same day the next guest checks in.
+  See `room_is_available()` in `backend/core/functions.php`.
+- **Price:** the price is calculated night by night, using the seasonal rate for each night and then the
+  long-stay discount. JavaScript shows an estimate on the booking form, but the final price is always
+  recalculated in PHP when the booking is saved.
+- **Validation:** forms are checked in the browser with JavaScript (dates, guest count, phone number,
+  password match). Everything is checked again in PHP, so the site still works safely with JavaScript turned off.
+- **Security:**
+  - Passwords are stored with `password_hash()`.
+  - All SQL uses prepared statements, and all output is escaped against XSS.
+  - Every form carries a CSRF token, and the session ID changes on login and logout.
+  - Guests can only see and cancel their own bookings, and the admin pages check the user's role.
 
 ---
 
-## 8. Acknowledgements & external resources
-- [Bootstrap 5.3.3](https://getbootstrap.com) (MIT) — layout, components
-- [Bootstrap Icons 1.11.3](https://icons.getbootstrap.com) (MIT)
-- [Chart.js 4.4.1](https://www.chartjs.org) (MIT) — dashboard chart
-- Google Fonts: Playfair Display, Inter (OFL)
-- OpenStreetMap embed for the location map (© OpenStreetMap contributors)
-- Room and villa photos were taken from public hotel listings and are used **only for this
-  non-commercial academic assignment**; all rights belong to their owners:
-  Booking.com (villa-pool, room-palm-shade, room-coral-reef), Agoda (room-coconut-grove),
-  Expedia / Vrbo (room-ocean-breeze, villa-dining), Villa-Finder – The Beach House Mirissa (villa-beach),
-  Saii Hotels (room-lagoon-family), Google Images (villa-hero, room-sunset-suite).
-- If a photo is missing, the site falls back to the original SVG illustration made for this project.
-- Coral Bay Villa, its address and all guest records are fictional.
+## Known limitations
 
-## 9. Generative AI declaration
-Generative AI (Claude, by Anthropic) was used to help scaffold the code structure, write parts of the
-PHP/JavaScript/CSS, and draft this README. I reviewed, tested and understand all submitted code and
-can explain how each part works.
-<!-- Edit this section so it accurately describes how you used AI. -->
+- No online payment. A booking is only a request until the villa confirms it.
+- No email notifications. Guests check the status on the My Bookings page.
+- Some of the room photos are low resolution, so they can look slightly soft on large screens.
+
+---
+
+## Acknowledgements
+
+- [Bootstrap 5.3.3](https://getbootstrap.com) and [Bootstrap Icons 1.11.3](https://icons.getbootstrap.com) – MIT licence.
+- [Chart.js 4.4.1](https://www.chartjs.org) – MIT licence.
+- Google Fonts: Playfair Display and Inter – Open Font License.
+- Map from [OpenStreetMap](https://www.openstreetmap.org) © OpenStreetMap contributors.
+- Room and villa photos were taken from public hotel listings and are used only for this non-commercial
+  university assignment. All rights belong to their owners: Booking.com (villa-pool, room-palm-shade,
+  room-coral-reef), Agoda (room-coconut-grove), Expedia/Vrbo (room-ocean-breeze, villa-dining),
+  Villa-Finder – The Beach House Mirissa (villa-beach), Saii Hotels (room-lagoon-family),
+  and Google Images (villa-hero, room-sunset-suite).
+- Coral Bay Villa, its address and all the guest details in the sample data are made up.
+
+---
+
+## Use of generative AI
+
+I used Claude (Anthropic) as a coding assistant. It helped me plan the folder structure, write parts of the
+PHP, JavaScript and CSS, and draft this README. I tested the system myself on XAMPP, and I understand and
+can explain all of the submitted code.

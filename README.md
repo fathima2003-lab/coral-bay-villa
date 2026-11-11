@@ -4,9 +4,9 @@ A room booking website for **Coral Bay Villa**, a small (fictional) beachside vi
 Guests can look around the villa, check which rooms are free for their dates and send a booking request.
 The villa's administrator then confirms or cancels each request from an admin panel.
 
-I built this for **IT1208 – Web Technologies, Continuous Assessment 2**.
+I built this for **Web Technologies**.
 
-**Student:** [Your Name] · [Index Number]
+**Student:** [MM Fathima Mina] · 
 **Repository:** https://github.com/fathima2003-lab/coral-bay-villa
 
 ---

@@ -1,9 +1,5 @@
 # Coral Bay Villa — Coastal Villa & Room Booking System
 
-**Module:** IT1208 – Web Technologies · Continuous Assessment 2 (Individual)
-**Student:** Keshomigha · 22CSE0392
-**Stack:** HTML5 · CSS3 · Bootstrap 5 · JavaScript (vanilla) · PHP 8 (PDO) · MySQL / MariaDB
-
 A dynamic web application for **Coral Bay Villa**, a fictional boutique villa in **Mirissa, Sri Lanka**.
 Visitors explore the villa, browse rooms, check availability and send booking requests.
 The administrator manages rooms, views reservations and confirms or cancels bookings.

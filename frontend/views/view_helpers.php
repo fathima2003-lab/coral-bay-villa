@@ -13,7 +13,21 @@ function e($value): string
 /** URL of a room/villa image in frontend/assets/img/. */
 function img_url(?string $file): string
 {
-    $file = $file ?: 'default.svg';
+    $file = basename($file ?: 'default.svg');
+    $dir  = __DIR__ . '/../assets/img/';
+
+    // If the photo is missing, fall back to another file with the same name
+    // (e.g. room-ocean-breeze.svg) and finally to the default image.
+    if (!is_file($dir . $file)) {
+        $base = pathinfo($file, PATHINFO_FILENAME);
+        $file = 'default.svg';
+        foreach (['jpg', 'jpeg', 'png', 'webp', 'svg'] as $ext) {
+            if (is_file($dir . $base . '.' . $ext)) {
+                $file = $base . '.' . $ext;
+                break;
+            }
+        }
+    }
     return asset_url('img/' . rawurlencode($file));
 }
 

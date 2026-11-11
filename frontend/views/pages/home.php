@@ -7,7 +7,7 @@ require __DIR__ . '/../layout/header.php';
 ?>
 
 <!-- ===== Hero ===== -->
-<section class="hero" style="background-image:url('<?= img_url('villa-hero.svg') ?>')">
+<section class="hero" style="background-image:url('<?= img_url('villa-hero.jpg') ?>')">
     <div class="hero-overlay"></div>
     <div class="container position-relative">
         <div class="row align-items-center g-4">

@@ -27,12 +27,12 @@ $reviews = $pdo->query(
 )->fetchAll();
 
 $gallery = [
-    ['villa-hero.svg',        'The villa at golden hour'],
-    ['villa-pool.svg',        'Infinity pool facing the bay'],
-    ['villa-beach.svg',       'Mirissa beach, two minutes away'],
-    ['room-sunset-suite.svg', 'Sunset Sea-View Suite'],
-    ['room-coconut-grove.svg','Coconut Grove Deluxe'],
-    ['villa-dining.svg',      'Seafood dinners on the terrace'],
+    ['villa-hero.jpg',        'The villa at golden hour'],
+    ['villa-pool.jpg',        'Infinity pool facing the bay'],
+    ['villa-beach.jpg',       'Mirissa beach, two minutes away'],
+    ['room-sunset-suite.jpg', 'Sunset Sea-View Suite'],
+    ['room-coconut-grove.jpg','Coconut Grove Deluxe'],
+    ['villa-dining.jpg',      'Seafood dinners on the terrace'],
 ];
 
 $today    = date('Y-m-d');

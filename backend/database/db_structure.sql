@@ -117,33 +117,33 @@ INSERT INTO users (name, email, contact_number, password, role) VALUES
 INSERT INTO rooms (room_name, room_type, description, facilities, price_per_night, max_guests, image, room_status) VALUES
 ('Ocean Breeze Room', 'Standard',
  'A bright, airy room a short stroll from the sand. Ideal for couples who want a calm base for whale watching and beach days in Mirissa.',
- 'Air conditioning,Free Wi-Fi,Hot water,Garden view,Mini fridge', 9500.00, 2, 'room-ocean-breeze.svg', 'active'),
+ 'Air conditioning,Free Wi-Fi,Hot water,Garden view,Mini fridge', 6500.00, 2, 'room-ocean-breeze.jpg', 'active'),
 ('Coconut Grove Deluxe', 'Deluxe',
  'Spacious deluxe room opening onto the coconut grove with a private sit-out. Listen to the waves while you enjoy breakfast outside.',
- 'Air conditioning,Free Wi-Fi,Private balcony,Smart TV,Mini fridge,Breakfast included', 14500.00, 3, 'room-coconut-grove.svg', 'active'),
+ 'Air conditioning,Free Wi-Fi,Private balcony,Smart TV,Mini fridge,Breakfast included', 10000.00, 3, 'room-coconut-grove.jpg', 'active'),
 ('Sunset Sea-View Suite', 'Suite',
  'Our signature suite with floor-to-ceiling windows facing the Indian Ocean. Watch the sun set over Parrot Rock from your private terrace.',
- 'Sea view,Air conditioning,Free Wi-Fi,Private terrace,Bathtub,Smart TV,Breakfast included', 24000.00, 2, 'room-sunset-suite.svg', 'active'),
+ 'Sea view,Air conditioning,Free Wi-Fi,Private terrace,Bathtub,Smart TV,Breakfast included', 15000.00, 2, 'room-sunset-suite.jpg', 'active'),
 ('Lagoon Family Room', 'Family',
  'Two connected bedrooms with a shared lounge, perfect for families. Close to the pool and the shallow end of the beach.',
- 'Air conditioning,Free Wi-Fi,Two bedrooms,Pool access,Kitchenette,Smart TV', 19500.00, 5, 'room-lagoon-family.svg', 'active'),
+ 'Air conditioning,Free Wi-Fi,Two bedrooms,Pool access,Kitchenette,Smart TV', 17500.00, 5, 'room-lagoon-family.jpg', 'active'),
 ('Palm Shade Room', 'Standard',
  'Cosy budget-friendly room tucked under the palms, with everything you need for a relaxed coastal getaway.',
- 'Fan,Free Wi-Fi,Hot water,Garden view', 7500.00, 2, 'room-palm-shade.svg', 'active'),
+ 'Fan,Free Wi-Fi,Hot water,Garden view', 7500.00, 2, 'room-palm-shade.jpg', 'active'),
 ('Coral Reef Deluxe', 'Deluxe',
  'Elegant deluxe room inspired by the colours of the reef, with a rain shower and a partial ocean view.',
- 'Partial sea view,Air conditioning,Free Wi-Fi,Rain shower,Mini fridge', 16000.00, 3, 'room-coral-reef.svg', 'inactive');
+ 'Partial sea view,Air conditioning,Free Wi-Fi,Rain shower,Mini fridge', 16000.00, 3, 'room-coral-reef.jpg', 'inactive');
 
 INSERT INTO room_images (room_id, file_name, caption) VALUES
-(1, 'room-ocean-breeze.svg', 'Ocean Breeze Room'),
-(1, 'villa-beach.svg',       'Two minutes to the beach'),
-(2, 'room-coconut-grove.svg','Coconut Grove Deluxe'),
-(2, 'villa-pool.svg',        'Infinity pool'),
-(3, 'room-sunset-suite.svg', 'Sunset Sea-View Suite'),
-(3, 'villa-beach.svg',       'Sunset over Mirissa bay'),
-(4, 'room-lagoon-family.svg','Lagoon Family Room'),
-(4, 'villa-pool.svg',        'Family pool area'),
-(5, 'room-palm-shade.svg',   'Palm Shade Room');
+(1, 'room-ocean-breeze.jpg', 'Ocean Breeze Room'),
+(1, 'villa-beach.jpg',       'Two minutes to the beach'),
+(2, 'room-coconut-grove.jpg','Coconut Grove Deluxe'),
+(2, 'villa-pool.jpg',        'Infinity pool'),
+(3, 'room-sunset-suite.jpg', 'Sunset Sea-View Suite'),
+(3, 'villa-beach.jpg',       'Sunset over Mirissa bay'),
+(4, 'room-lagoon-family.jpg','Lagoon Family Room'),
+(4, 'villa-pool.jpg',        'Family pool area'),
+(5, 'room-palm-shade.jpg',   'Palm Shade Room');
 
 -- Seasons for the south coast (peak Dec–Apr)
 INSERT INTO seasonal_rates (season_name, start_date, end_date, rate_multiplier) VALUES
@@ -153,11 +153,11 @@ INSERT INTO seasonal_rates (season_name, start_date, end_date, rate_multiplier) 
 
 -- Bookings (mix of statuses, including past stays used for reviews)
 INSERT INTO bookings (user_id, room_id, check_in, check_out, num_guests, nights, total_amount, booking_status, booking_date) VALUES
-(2, 1, '2026-10-10', '2026-10-13', 2, 3, 28500.00, 'Confirmed', '2026-09-28 10:15:00'),
-(3, 3, '2026-10-20', '2026-10-24', 2, 4, 96000.00, 'Confirmed', '2026-10-01 18:40:00'),
-(2, 2, '2026-11-20', '2026-11-23', 2, 3, 43500.00, 'Confirmed', '2026-11-01 09:05:00'),
-(3, 4, '2026-11-25', '2026-11-28', 4, 3, 58500.00, 'Pending',   '2026-11-05 14:22:00'),
-(4, 3, '2026-12-01', '2026-12-04', 2, 3, 72000.00, 'Pending',   '2026-11-06 11:30:00'),
+(2, 1, '2026-10-10', '2026-10-13', 2, 3, 19500.00, 'Confirmed', '2026-09-28 10:15:00'),
+(3, 3, '2026-10-20', '2026-10-24', 2, 4, 60000.00, 'Confirmed', '2026-10-01 18:40:00'),
+(2, 2, '2026-11-20', '2026-11-23', 2, 3, 30000.00, 'Confirmed', '2026-11-01 09:05:00'),
+(3, 4, '2026-11-25', '2026-11-28', 4, 3, 52500.00, 'Pending',   '2026-11-05 14:22:00'),
+(4, 3, '2026-12-01', '2026-12-04', 2, 3, 45000.00, 'Pending',   '2026-11-06 11:30:00'),
 (4, 5, '2026-11-15', '2026-11-17', 1, 2, 15000.00, 'Cancelled', '2026-11-02 16:45:00');
 
 INSERT INTO reviews (booking_id, user_id, room_id, rating, comment) VALUES

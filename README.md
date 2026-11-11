@@ -198,8 +198,12 @@ with image upload, reviews, and no horizontal scrolling at 390 px mobile width.
 - [Chart.js 4.4.1](https://www.chartjs.org) (MIT) — dashboard chart
 - Google Fonts: Playfair Display, Inter (OFL)
 - OpenStreetMap embed for the location map (© OpenStreetMap contributors)
-- Room and villa images are original SVG illustrations made for this project.
-  Replace them with real photos by uploading through **Admin → Rooms → Edit**.
+- Room and villa photos were taken from public hotel listings and are used **only for this
+  non-commercial academic assignment**; all rights belong to their owners:
+  Booking.com (villa-pool, room-palm-shade, room-coral-reef), Agoda (room-coconut-grove),
+  Expedia / Vrbo (room-ocean-breeze, villa-dining), Villa-Finder – The Beach House Mirissa (villa-beach),
+  Saii Hotels (room-lagoon-family), Google Images (villa-hero, room-sunset-suite).
+- If a photo is missing, the site falls back to the original SVG illustration made for this project.
 - Coral Bay Villa, its address and all guest records are fictional.
 
 ## 9. Generative AI declaration

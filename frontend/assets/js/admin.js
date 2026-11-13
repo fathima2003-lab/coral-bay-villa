@@ -1,6 +1,4 @@
-/**
- * Admin dashboard chart (Chart.js) — booking requests per month by status.
- */
+/** Admin dashboard chart (Chart.js) — booking requests per month by status. */
 document.addEventListener('DOMContentLoaded', function () {
     'use strict';
     const canvas = document.getElementById('bookingsChart');

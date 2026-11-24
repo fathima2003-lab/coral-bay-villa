@@ -7,7 +7,7 @@ The villa's administrator then confirms or cancels each request from an admin pa
 I built this for **[Web Technologies]** my personal project.
  
 **Repository:** https://github.com/fathima2003-lab/coral-bay-villa
-**The site:** http://localhost/coral-bay-villa/
+\**The site:** http://localhost/coral-bay-villa/
 
 ---
 

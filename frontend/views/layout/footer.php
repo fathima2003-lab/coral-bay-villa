@@ -7,7 +7,7 @@
             <div class="col-md-5">
                 <h5 class="footer-brand"><i class="bi bi-water"></i> <?= e(SITE_NAME) ?></h5>
                 <p class="small mb-2">A boutique beachside villa on the south coast of Sri Lanka — whale watching, surf and golden sunsets on your doorstep.</p>
-                <p class="small mb-0 text-white-50">This is a fictional villa created for an academic assignment.</p>
+                <p class="small mb-0 text-white-50">This is a fictional villa web page created for an academic assignment.</p>
             </div>
             <div class="col-6 col-md-3">
                 <h6>Explore</h6>
@@ -22,13 +22,13 @@
                 <h6>Contact</h6>
                 <ul class="list-unstyled small">
                     <li><i class="bi bi-geo-alt"></i> 24 Beach Road, Mirissa, Sri Lanka</li>
-                    <li><i class="bi bi-telephone"></i> +94 41 225 0000</li>
+                    <li><i class="bi bi-telephone"></i> +94 41 225 5500</li>
                     <li><i class="bi bi-envelope"></i> stay@coralbay.lk</li>
                 </ul>
             </div>
         </div>
         <hr class="border-secondary">
-        <p class="small text-center text-white-50 mb-0">&copy; <?= date('Y') ?> <?= e(SITE_NAME) ?> · IT1208 Web Technologies CA2</p>
+        <p class="small text-center text-white-50 mb-0">&copy; <?= date('Y') ?> <?= e(SITE_NAME) ?> · All rights reserved.</p>
     </div>
 </footer>
 

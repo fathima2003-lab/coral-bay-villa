@@ -6,8 +6,8 @@ The villa's administrator then confirms or cancels each request from an admin pa
 
 I built this for **[Web Technologies]** my personal project.
  
-**Repository:** https://github.com/fathima2003-lab/coral-bay-villa
-\**The site:** http://localhost/coral-bay-villa/
+**Repository:** https://github.com/fathima2003-lab/coral-bay-villa <br>
+**The site:** http://localhost/coral-bay-villa/
 
 ---
 
@@ -114,7 +114,7 @@ vanilla JavaScript for validation and live updates.
 | Guest | kasun@example.com | Guest@123 |
 
 The sample data includes bookings in all three states (Pending, Confirmed, Cancelled), a few reviews
-and three pricing seasons. \For example, Nimal already has a confirmed booking for the Coconut Grove Deluxe
+and three pricing seasons. <br>For example, Nimal already has a confirmed booking for the Coconut Grove Deluxe
 on 20–23 November 2026. If you search those dates, that room won't be shown.
 
 ---
@@ -143,7 +143,7 @@ coral-bay-villa/
 
 ### Database tables
 `users`, `rooms`, `bookings`, `room_images`, `reviews`, `seasonal_rates`.
-\Bookings link to a user and a room; reviews link to a booking.
+<br>Bookings link to a user and a room; reviews link to a booking.
 
 ---
 

@@ -7,6 +7,7 @@ The villa's administrator then confirms or cancels each request from an admin pa
 I built this for **[Web Technologies]** my personal project.
  
 **Repository:** https://github.com/fathima2003-lab/coral-bay-villa
+**The site:** http://localhost/coral-bay-villa/
 
 ---
 
@@ -94,15 +95,11 @@ vanilla JavaScript for validation and live updates.
    - Choose `backend/database/db_structure.sql` and click **Import**.
    - This creates the `coral_bay_villa` database with its tables and sample data.
 
-4. **Check the database settings** in `backend/config/config.php`.
-   The defaults match a fresh XAMPP install (user `root`, empty password). Change `DB_USER` and
-   `DB_PASS` if your MySQL is set up differently.
-
-5. **Open the site:** http://localhost/coral-bay-villa/
+4. **Open the site:** http://localhost/coral-bay-villa/
 
 **Troubleshooting**
 - *"Database connection failed"* – MySQL isn't running, or the SQL file hasn't been imported yet.
-- *500 Internal Server Error* – make sure Apache allows `.htaccess` files (`AllowOverride All` in `httpd.conf`), then restart Apache.
+- *500 Internal Server Error* – make sure Apache allows `.htaccess` files, then restart Apache.
 - *Room photos don't upload* – check that `frontend/assets/img/` isn't read-only.
 
 ---
@@ -117,7 +114,7 @@ vanilla JavaScript for validation and live updates.
 | Guest | kasun@example.com | Guest@123 |
 
 The sample data includes bookings in all three states (Pending, Confirmed, Cancelled), a few reviews
-and three pricing seasons. For example, Nimal already has a confirmed booking for the Coconut Grove Deluxe
+and three pricing seasons. \For example, Nimal already has a confirmed booking for the Coconut Grove Deluxe
 on 20–23 November 2026. If you search those dates, that room won't be shown.
 
 ---
@@ -146,7 +143,7 @@ coral-bay-villa/
 
 ### Database tables
 `users`, `rooms`, `bookings`, `room_images`, `reviews`, `seasonal_rates`.
-Bookings link to a user and a room; reviews link to a booking.
+\Bookings link to a user and a room; reviews link to a booking.
 
 ---
 
@@ -194,8 +191,7 @@ Bookings link to a user and a room; reviews link to a booking.
 
 ## Use of generative AI
 
-I used Claude (Anthropic) as a coding assistant. It helped me plan the folder structure, write parts of the
-PHP, JavaScript and CSS, and draft this README. I tested the system myself on XAMPP, and I understand and
-can explain all of the submitted code.
+I used Claude as a coding assistant. It helped me plan the folder structure, write parts of the
+PHP, JavaScript and CSS, and draft this README. I tested the system myself on XAMPP.
 
 **Done by:** MM Fathima Mina 
